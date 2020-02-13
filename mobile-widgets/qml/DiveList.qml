@@ -468,6 +468,7 @@ Kirigami.ScrollablePage {
 					verticalAlignment: Text.AlignVCenter
 					text: numShownText
 				}
+				onHeightChanged: { manager.appendTextToLog("filterBar height changed to: " + height) }
 			}
 		}
 	}
@@ -538,9 +539,11 @@ Kirigami.ScrollablePage {
 		}
 		text: qsTr("Filter dives")
 		onTriggered: {
+			manager.appendTextToLog("Filter was " + rootItem.filterToggle)
 			rootItem.filterToggle = !rootItem.filterToggle
 			manager.setFilter("")
 			numShownText = diveModel.shown()
+			manager.appendTextToLog("Filter toggled to " + rootItem.filterToggle)
 		}
 	}
 
